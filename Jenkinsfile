@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+        booleanParam(name: 'PUSH_IMAGE', defaultValue: false, description: 'Push Docker image to a registry')
+    }
+
     options {
         timestamps()
     }
@@ -62,7 +66,10 @@ pipeline {
 
         stage('Push Docker Image') {
             when {
-                branch 'main'
+                allOf {
+                    branch 'main'
+                    expression { return params.PUSH_IMAGE }
+                }
             }
             steps {
                 script {
