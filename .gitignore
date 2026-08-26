@@ -1,0 +1,13 @@
+target/
+.idea/
+*.class
+
+# VS Code
+.vscode/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
